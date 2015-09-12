@@ -3,6 +3,7 @@ package edu.upenn.cis573.hwk1;
 import java.util.Iterator;
 
 import edu.upenn.cis573.Compare.CipherComparator;
+import edu.upenn.cis573.Compare.CompareResult;
 import edu.upenn.cis573.Decrypt.DecryptTool;
 import edu.upenn.cis573.Encrypt.EncryptTool;
 import edu.upenn.cis573.FrequencyModel.FrequencyResult;
@@ -27,7 +28,7 @@ public class CrossValidation {
 		corpusResult = new FrequencyResult();
 	}
 	
-	public void run(){
+	public CompareResult run(){
 		EncryptTool encryptTool = EncryptTool.getEncryptTool();
 		String testInputName = testInput.getName();
 		testInputName = testInputName.substring(0, testInputName.length()-4);
@@ -37,10 +38,10 @@ public class CrossValidation {
 		
 		Input testEncryptFile = new TextInput(encryptFileName);
 		
-		System.out.println("encrypt file frequency result");
+//		System.out.println("encrypt file frequency result");
 		generateEncryptResult(testEncryptFile);
 		
-		System.out.println("corpus frequency result");
+//		System.out.println("corpus frequency result");
 		generateCorpusResult();
 		
 		mappingResult();
@@ -53,7 +54,8 @@ public class CrossValidation {
 		Input testDecryptFile = new TextInput(decryptFileName);
 		CipherComparator comparator = CipherComparator.getCipherComparator();
 		
-		comparator.compare(testInput, testDecryptFile);
+		CompareResult result = comparator.compare(testInput, testDecryptFile);
+		return result;
 	}
 	
 	private void generateEncryptResult(Input input){
@@ -74,7 +76,7 @@ public class CrossValidation {
 	
 	private void mappingResult(){
 		mapping = corpusResult.mapping(testResult);
-		System.out.println(mapping);
+//		System.out.println(mapping);
 	}
 	
 }
