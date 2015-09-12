@@ -1,25 +1,25 @@
 package edu.upenn.cis573.Input;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class TextFile implements Input {
+public class TextInput implements Input {
 
-	private String filename;
+	private File file;
 	private FileReader fileReader;
 	private BufferedReader bufferedReader;
 
-	public TextFile(String filename) {
-		this.filename = filename;
-
+	public TextInput(File file) {
+		this.file = file;
 	}
 
 	@Override
 	public void open() {
 		try {
-			fileReader = new FileReader(filename);
+			fileReader = new FileReader(file);
 			bufferedReader = new BufferedReader(fileReader);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
