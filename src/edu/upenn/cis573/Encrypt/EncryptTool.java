@@ -1,6 +1,11 @@
 package edu.upenn.cis573.Encrypt;
 
+import java.io.File;
+
 import edu.upenn.cis573.Input.Input;
+import edu.upenn.cis573.Input.TextInput;
+import edu.upenn.cis573.Output.Output;
+import edu.upenn.cis573.Output.TextOutput;
 
 public class EncryptTool {
 
@@ -17,12 +22,16 @@ public class EncryptTool {
 		return encryptTool;
 	}
 	
-	public void encrypt(Input input){
+	public static void encrypt(Input input, Output output){
 		String line = null;
+		input.open();
+		output.open();
 		while((line = input.readLine()) != null){
 			String encryptText = encryptLine(line);
-			
+			output.writeLine(encryptText);
 		}
+		input.close();
+		output.close();
 	}
 	
 	public static String encryptLine(String line){
@@ -40,8 +49,11 @@ public class EncryptTool {
 	}
 	
 	public static void main(String[] args){
-		String line = "Shakespeare homepage | All's Well That Ends Well | Entire play";
-		System.out.println(line.toLowerCase());
-		System.out.println(encryptLine(line));
+		String input = "/Users/Jingyuan/Desktop/courses/CIS 573/Homework 1/corpus/allswell.txt";
+		File inputFile = new File(input);
+		Input textFile = new TextInput(inputFile);
+		String output = "encryptFile.txt";
+		Output outputFile = new TextOutput(output);
+		encrypt(textFile, outputFile);
 	}
 }
