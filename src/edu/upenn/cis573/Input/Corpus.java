@@ -10,11 +10,11 @@ public class Corpus<Input> implements Iterable<Input> {
 	
 	public Corpus(){
 		this.corpus = new ArrayList<Input>();
-		this.size = corpus.size();
 	}
 	
 	public void addInput(Input input){
 		corpus.add(input);
+		size++;
 	}
 
 	@Override

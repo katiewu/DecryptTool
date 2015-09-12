@@ -6,6 +6,16 @@ import java.util.Comparator;
 import edu.upenn.cis573.Input.Input;
 
 public class FrequencyResult {
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<result.length;i++){
+			sb.append(result[i].getChar()+"\t"+result[i].getCount());
+			sb.append("\n");
+		}
+		return new String(sb);
+	}
+
 	private LetterFrequency[] result;
 	
 	public FrequencyResult(){
@@ -27,6 +37,7 @@ public class FrequencyResult {
 	}
 	
 	public void analyzeInput(Input input){
+		input.open();
 		String line;
 		while((line = input.readLine()) != null){
 			line = line.toLowerCase();
@@ -37,6 +48,7 @@ public class FrequencyResult {
 				}
 			}
 		}
+		input.close();
 	}
 	
 	public void sort(){

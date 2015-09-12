@@ -17,14 +17,13 @@ public class Main {
 			if (listOfFiles[i].isFile() && listOfFiles[i].getName().endsWith(".txt")) {
 				Input file = new TextInput(listOfFiles[i]);
 				inputs.add(file);
-				System.out.println("File " + listOfFiles[i].getName());
 			}
 		}
 		return inputs;
 	}
 	
 	public static void test(List<Input> fileList){
-		for(int i=0;i<fileList.size();i++){
+		for(int i=0;i<5;i++){
 			Input testFile = fileList.get(i);
 			Corpus<Input> corpus = new Corpus<Input>();
 			for(int j=0;j<fileList.size();j++){
@@ -33,6 +32,7 @@ public class Main {
 				}
 			}
 			CrossValidation crossValidation = new CrossValidation(testFile, corpus);
+			crossValidation.run();
 		}
 	}
 	
@@ -54,8 +54,8 @@ public class Main {
 			return;
 		}
 		
-		
-		
+		List<Input> lst = getFileList(folderPath);
+		test(lst);
 	}
 
 }

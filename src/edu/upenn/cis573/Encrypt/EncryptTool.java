@@ -36,7 +36,7 @@ public class EncryptTool {
 		char[] charArray = line.toCharArray();
 		for(char c:charArray){
 			if(Character.isLetter(c)){
-				char ct = (char) ((c - 'a' + 1)%26 + 'a');
+				char ct = (char) ((c - 'a' + 2)%26 + 'a');
 				sb.append(ct);
 			}
 			else sb.append(c);
