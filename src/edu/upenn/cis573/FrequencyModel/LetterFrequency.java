@@ -1,4 +1,4 @@
-package edu.upenn.cis573.hwk1;
+package edu.upenn.cis573.FrequencyModel;
 
 public class LetterFrequency {
 	private char c;

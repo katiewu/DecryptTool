@@ -1,4 +1,4 @@
-package edu.upenn.cis573.hwk1;
+package edu.upenn.cis573.FrequencyModel;
 
 import java.util.Arrays;
 import java.util.Comparator;
