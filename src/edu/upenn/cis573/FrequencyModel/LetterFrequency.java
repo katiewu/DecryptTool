@@ -16,5 +16,9 @@ public class LetterFrequency {
 	public int getCount(){
 		return count;
 	}
+	
+	public char getChar(){
+		return c;
+	}
 
 }

@@ -13,6 +13,7 @@ public class CrossValidation {
 	private Corpus<Input> corpus;
 	private FrequencyResult testResult;
 	private FrequencyResult corpusResult;
+	private char[] mapping;
 	
 	public CrossValidation(Input testInput, Corpus<Input> corpus){
 		this.testInput = testInput;
@@ -35,6 +36,10 @@ public class CrossValidation {
 			corpusAnalysis.analyzeInput(input);
 		}
 		corpusResult.sort();
+	}
+	
+	public void mappingResult(){
+		mapping = corpusResult.mapping(testResult);
 	}
 	
 }

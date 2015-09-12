@@ -9,9 +9,14 @@ public class FrequencyResult {
 	public FrequencyResult(){
 		result = new LetterFrequency[26];
 		for(int i=0;i<26;i++){
-			char c = 'a'+0;
+			char c = (char) ('a' + i);
 			result[i] = new LetterFrequency(c);
 		}
+	}
+	
+	public char getLetter(int i){
+		LetterFrequency lf = result[i];
+		return lf.getChar();
 	}
 	
 	public void increCount(char c){
@@ -28,6 +33,17 @@ public class FrequencyResult {
 			}
 			
 		});
+	}
+	
+	public char[] mapping(FrequencyResult testResult){
+		char[] match = new char[26];
+		for(int i=0;i<26;i++){
+			char tc = testResult.getLetter(i);
+			char cc = this.getLetter(i);
+			int index = tc - 'a';
+			match[index] = cc;
+		}
+		return match;
 	}
 
 }
