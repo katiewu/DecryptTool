@@ -1,4 +1,4 @@
-package edu.upenn.cis573.FrequencyModel;
+package edu.upenn.cis573.DecryptModel;
 
 import java.util.Arrays;
 import java.util.Comparator;

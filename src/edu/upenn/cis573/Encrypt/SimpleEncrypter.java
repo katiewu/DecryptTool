@@ -3,22 +3,10 @@ package edu.upenn.cis573.Encrypt;
 import edu.upenn.cis573.Input.Input;
 import edu.upenn.cis573.Output.Output;
 
-public class EncryptTool {
+public class SimpleEncrypter implements Encrypter{
 
-	private static EncryptTool encryptTool = null;
-	
-	private EncryptTool(){
-		
-	}
-	
-	public static EncryptTool getEncryptTool(){
-		if(encryptTool == null){
-			encryptTool = new EncryptTool();
-		}
-		return encryptTool;
-	}
-	
-	public void encrypt(Input input, Output output){
+	@Override
+	public void encrypt(Input input, Output output) {
 		String line = null;
 		input.open();
 		output.open();
@@ -27,7 +15,7 @@ public class EncryptTool {
 			output.writeLine(encryptText);
 		}
 		input.close();
-		output.close();
+		output.close();	
 	}
 	
 	private String encryptLine(String line){
@@ -43,4 +31,5 @@ public class EncryptTool {
 		}
 		return new String(sb);
 	}
+
 }

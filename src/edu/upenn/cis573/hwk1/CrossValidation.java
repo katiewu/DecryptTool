@@ -5,8 +5,12 @@ import java.util.Iterator;
 import edu.upenn.cis573.Compare.CipherComparator;
 import edu.upenn.cis573.Compare.CompareResult;
 import edu.upenn.cis573.Decrypt.DecryptTool;
-import edu.upenn.cis573.Encrypt.EncryptTool;
-import edu.upenn.cis573.FrequencyModel.FrequencyResult;
+import edu.upenn.cis573.Decrypt.Decrypter;
+import edu.upenn.cis573.DecryptModel.DecryptModel;
+import edu.upenn.cis573.DecryptModel.FrequencyModel;
+import edu.upenn.cis573.DecryptModel.FrequencyResult;
+import edu.upenn.cis573.Encrypt.Encrypter;
+import edu.upenn.cis573.Encrypt.SimpleEncrypter;
 import edu.upenn.cis573.Input.Corpus;
 import edu.upenn.cis573.Input.Input;
 import edu.upenn.cis573.Input.TextInput;
@@ -29,31 +33,21 @@ public class CrossValidation {
 	}
 	
 	public CompareResult run(){
-		EncryptTool encryptTool = EncryptTool.getEncryptTool();
-		String testInputName = testInput.getName();
-		testInputName = testInputName.substring(0, testInputName.length()-4);
-		String encryptFileName = testInputName + "Encrypt.txt";
-		Output encryptFile = new TextOutput(encryptFileName);
-		encryptTool.encrypt(testInput, encryptFile);
+		// encrypt
+		Encrypter encrypter = new SimpleEncrypter();
+		Output encryptFile = new TextOutput("Encrypt.txt");
+		encrypter.encrypt(testInput, encryptFile);
 		
-		Input testEncryptFile = new TextInput(encryptFileName);
+		Input encryptInput = new TextInput("Encrypt.txt");
+		Output decryptOutput = new TextOutput("Decrypt.txt");
+		DecryptModel model = new FrequencyModel(encryptInput, corpus);
 		
-//		System.out.println("encrypt file frequency result");
-		generateEncryptResult(testEncryptFile);
+		Decrypter decrypter = Decrypter.getDecrypter();
+		decrypter.decrypt(encryptInput, decryptOutput, model);
+
 		
-//		System.out.println("corpus frequency result");
-		generateCorpusResult();
-		
-		mappingResult();
-		
-		String decryptFileName = testInputName + "Decrypt.txt";
-		Output decryptFile = new TextOutput(decryptFileName);
-		DecryptTool decryptTool = DecryptTool.getDecryptTool();
-		decryptTool.decrypt(testEncryptFile, decryptFile, mapping);
-		
-		Input testDecryptFile = new TextInput(decryptFileName);
+		Input testDecryptFile = new TextInput("Decrypt.txt");
 		CipherComparator comparator = CipherComparator.getCipherComparator();
-		
 		CompareResult result = comparator.compare(testInput, testDecryptFile);
 		return result;
 	}

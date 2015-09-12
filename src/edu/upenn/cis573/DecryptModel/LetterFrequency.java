@@ -1,4 +1,4 @@
-package edu.upenn.cis573.FrequencyModel;
+package edu.upenn.cis573.DecryptModel;
 
 public class LetterFrequency {
 	private char c;
