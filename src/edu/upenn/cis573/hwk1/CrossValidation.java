@@ -3,7 +3,6 @@ package edu.upenn.cis573.hwk1;
 import java.util.Iterator;
 
 import edu.upenn.cis573.FrequencyModel.FrequencyResult;
-import edu.upenn.cis573.FrequencyModel.InputAnalysis;
 import edu.upenn.cis573.Input.Corpus;
 import edu.upenn.cis573.Input.Input;
 
@@ -23,17 +22,15 @@ public class CrossValidation {
 	}
 	
 	public void generateTestResult(){
-		InputAnalysis testAnalysis = new InputAnalysis(testResult);
-		testAnalysis.analyzeInput(testInput);
+		testResult.analyzeInput(testInput);
 		testResult.sort();
 	}
 	
 	public void generateCorpusResult(){
-		InputAnalysis corpusAnalysis = new InputAnalysis(corpusResult);
 		Iterator<Input> iterator = corpus.iterator();
 		while(iterator.hasNext()){
 			Input input = iterator.next();
-			corpusAnalysis.analyzeInput(input);
+			corpusResult.analyzeInput(input);
 		}
 		corpusResult.sort();
 	}
