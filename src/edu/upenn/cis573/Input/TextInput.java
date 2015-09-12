@@ -12,8 +12,16 @@ public class TextInput implements Input {
 	private FileReader fileReader;
 	private BufferedReader bufferedReader;
 
+	public TextInput(String filename){
+		this.file = new File(filename);
+	}
+	
 	public TextInput(File file) {
 		this.file = file;
+	}
+	
+	public String getName(){
+		return file.getName();
 	}
 
 	@Override

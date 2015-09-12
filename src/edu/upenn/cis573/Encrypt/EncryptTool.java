@@ -11,7 +11,7 @@ public class EncryptTool {
 		
 	}
 	
-	public EncryptTool getEncryptTool(){
+	public static EncryptTool getEncryptTool(){
 		if(encryptTool == null){
 			encryptTool = new EncryptTool();
 		}

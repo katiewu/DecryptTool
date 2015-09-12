@@ -11,7 +11,7 @@ public class DecryptTool {
 		
 	}
 	
-	public DecryptTool getDecryptTool(){
+	public static DecryptTool getDecryptTool(){
 		if(decryptTool == null){
 			decryptTool = new DecryptTool();
 		}
@@ -30,7 +30,7 @@ public class DecryptTool {
 		output.close();
 	}
 	
-	public String decryptLine(String line, char[] mapping){
+	private String decryptLine(String line, char[] mapping){
 		line = line.toLowerCase();
 		char[] charArray = line.toCharArray();
 		StringBuilder sb = new StringBuilder();
